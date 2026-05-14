@@ -8,11 +8,12 @@ To avoid this, a bash script workaround has been provided which displays a splas
 and busy mouse cursor until the actual Steam window opens.
 
 To use this script - 
-1. Copy the steam.jpg to your ~/Pictures folder
-2. Right click the script->Properties and provide execute permissions
-3. Right click the default Steam launcher (on the desktop or start menu entry) and select properties.
+1. Install 'feh' using "sudo apt install feh" or any software/package manager.
+2. Copy the steam.jpg to your ~/Pictures folder
+3. Right click the script->Properties and provide execute permissions
+4. Right click the default Steam launcher (on the desktop or start menu entry) and select properties.
     Modify the 'Command' line to "bash /path/to/steam-launcher-busy-cursor.sh"
-4. Open launcher now to run Steam.
+5. Open launcher now to run Steam.
 
 Feel free to modify the script or the jpeg file as you see fit.
 
