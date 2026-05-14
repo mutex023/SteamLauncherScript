@@ -13,7 +13,7 @@ To use this script -
 3. Right click the script->Properties and provide execute permissions
 4. Right click the default Steam launcher (on the desktop or start menu entry) and select properties.
     Modify the 'Command' line to "bash /path/to/steam-launcher-busy-cursor.sh"
-5. Open launcher now to run Steam.
+5. Close all windows and run the launcher now to run Steam.
 
 Feel free to modify the script or the jpeg file as you see fit.
 
