@@ -10,21 +10,32 @@
 
 #set busy mouse pointer 
 xsetroot -cursor_name watch
+
 #display Steam loading pic using 'feh'
 feh -x ~/Pictures/steam.jpg &
 PID=$!
+
 #launch steam
-/usr/bin/steam %U &
+/usr/bin/steam "$@" &
+
 #loop to wait for steam GUI window to open
-RETVAL=0
-while [ $RETVAL -eq 0 ];
-do
-    sleep 1
-    wmctrl -l > /tmp/stlbc.txt
-    RETVAL=$(grep -c Steam /tmp/stlbc.txt)
+
+# `wmctrl -l` outputs 4 "fields", separated by one or more spaces, but window
+# names (the last field) may also contain spaces. We use awk to match the 4th
+# field exactly to "Steam" _and_ check that the number of fields is exactly 4.
+# awk always returns 0 normally, so we counter-intuitively return non-zero to
+# indicate a match.
+#
+# Basically, the while command will repeat until a window named exactly "Steam"
+# is found and awk returns 1, ending the loop.
+# Thanks to Steam Linux user Mr ]"[ for suggesting this method rather than plain grep.
+while wmctrl -l | awk '$4 ~ /^Steam$/ {if(NF==4){exit 1}}'; do
+	sleep 1
 done
+
 #set normal mouse pointer
 xsetroot -cursor_name left_ptr
+
 #terminate 'feh'
 kill $PID
 
